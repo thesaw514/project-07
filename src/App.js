@@ -8,11 +8,15 @@ class App extends Component {
 
   constructor() {
     super();
+    
     this.state = {
       venues: [],
       markers: [],
       center: [],
-      zoom: 12
+      zoom: 12,
+      updateSuperState: obj => {
+        this.setState(obj);
+      }
     };
   }
 
@@ -35,6 +39,12 @@ class App extends Component {
       this.setState({ venues: Object.assign(this.state.venues, newVenue) });
       console.log(newVenue);
     });
+  };
+
+
+  handleListItemClick = venue => {
+    const marker = this.state.markers.find(marker => marker.id === venue.id);
+    this.handleMarkerClick(marker);
   };
 
   componentDidMount() {
@@ -63,8 +73,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SideBar />
-        <Map {...this.state} handleMarkerClick={this.handleMarkerClick} />
+        <SideBar
+          {...this.state}
+            handleListItemClick={this.handleListItemClick}
+        />
+        <Map
+          {...this.state}
+            handleMarkerClick={this.handleMarkerClick}
+        />
       </div>
     );
   }
