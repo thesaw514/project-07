@@ -9,7 +9,7 @@ export default class VenueList extends Component {
           this.props.venues.map((venue,idx) => (
             <ListItem
               key={idx}
-                {...venue}    handleListItemClick={this.props.handleListItemClick}
+                {...venue} handleListItemClick={this.props.handleListItemClick}
               />
             ))}
       </ol>

@@ -43,10 +43,11 @@ export default class SideBar extends Component {
   render() {
     return (
       <div className='sideBar'>
+        <h1 className='heading'>Pizza Restaurants in Decatur, GA!</h1>
         <input
           type={'search'}
           id={'search'}
-          placeHolder={'Filter Venues'}
+          placeholder={'Filter Venues'}
           onChange={this.handleChange}
         />
         <VenueList

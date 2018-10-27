@@ -4,16 +4,19 @@ import Map from './component/Map';
 import SquareAPI from './API/';
 import SideBar from './component/SideBar';
 
+//react-burger-menu
+import { slide as Menu } from 'react-burger-menu';
+
 class App extends Component {
 
   constructor() {
     super();
-    
+
     this.state = {
       venues: [],
       markers: [],
       center: [],
-      zoom: 12,
+      zoom: 14,
       updateSuperState: obj => {
         this.setState(obj);
       }
@@ -49,9 +52,9 @@ class App extends Component {
 
   componentDidMount() {
     SquareAPI.search({
-      near: 'Austin, TX',
-      query: 'tacos',
-      limit: 10
+      ll: '33.774830,-84.296310',
+      near: 'Atlanta, GA',
+      query: 'Pizza'
     })
     .then(results => {
       const { venues } = results.response;
@@ -73,13 +76,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SideBar
-          {...this.state}
-            handleListItemClick={this.handleListItemClick}
-        />
+        <Menu width={'25vw'}>
+          <SideBar
+            {...this.state}
+              handleListItemClick={this.handleListItemClick}
+          />
+        </Menu>
         <Map
           {...this.state}
             handleMarkerClick={this.handleMarkerClick}
+            closeAllMarkers={this.closeAllMarkers} 
+            onCloseClick={this.closeAllMarkers}
         />
       </div>
     );

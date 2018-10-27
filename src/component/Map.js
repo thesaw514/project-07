@@ -20,11 +20,11 @@ const MyMapComponent = withScriptjs(
             key={idx}
             position={{ lat: marker.lat, lng: marker.lng }}
             onClick={() => props.handleMarkerClick(marker)}
-            animation={arr.length === 1 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}
+            animation={marker.isOpen === true ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP}
           >
             {marker.isOpen &&
               venueInfo.bestPhoto && (
-                <InfoWindow>
+                <InfoWindow onCloseClick={() => props.closeAllMarkers()} >
                   <React.Fragment>
                     <img src={`${venueInfo.bestPhoto.prefix}200x200${venueInfo.bestPhoto.suffix}`} alt={'Venue Img'}
                     />
@@ -45,7 +45,7 @@ export default class Map extends Component {
         {...this.props}
         googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBC9GkcUSe5d-ofljm2v11CeoCs1j4KgJY"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%`, width: `75%` }} />}
+        containerElement={<div style={{ height: `100%`, width: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
     );

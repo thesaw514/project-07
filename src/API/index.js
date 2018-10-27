@@ -13,7 +13,7 @@ class Helper {
     return Object.keys(keys)
       .map(key =>`${key}=${keys[key]}`)
       .join('&');
-  }
+    }
 
   static urlBuilder(urlParameters) {
     if(!urlParameters) {
@@ -23,7 +23,7 @@ class Helper {
     return Object.keys(urlParameters)
       .map(key => `${key}=${urlParameters[key]}`)
       .join('&');
-  }
+    }
 
   static headers() {
     return {
@@ -40,8 +40,8 @@ class Helper {
     return fetch(
       `${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(urlParameters)}`, requestData)
       .then(res => res.json());
+    }
   }
-}
 
 export default class SquareAPI {
   static search(urlParameters) {
@@ -49,7 +49,7 @@ export default class SquareAPI {
   }
 
   static getVenueDetails(VENUE_ID) {
-    return Helper.simpleFetch(`/venues/${VENUE_ID}`,'GET');
+    return Helper.simpleFetch(`/venues/${VENUE_ID}`, 'GET');
   }
 
   static getVenuePhotos(VENUE_ID) {
