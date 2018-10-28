@@ -1,4 +1,8 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / SideBar.js / 10.21.18
+
 import React, { Component } from 'react';
+import { stack as Menu } from 'react-burger-menu';
+import '../SideBar.css';
 import VenueList from './VenueList';
 
 export default class SideBar extends Component {
@@ -42,20 +46,22 @@ export default class SideBar extends Component {
 
   render() {
     return (
-      <div className='sideBar'>
-        <h1 className='heading'>Pizza Restaurants in Decatur, GA!</h1>
-        <input
-          type={'search'}
-          id={'search'}
-          placeholder={'Filter Venues'}
-          onChange={this.handleChange}
-        />
-        <VenueList
-          {...this.props}
-            venues={this.handleFilterVenues()}
-            handleListItemClick={this.props.handleListItemClick}
-        />
-      </div>
+      <Menu noOverlay>
+        <div className='sideBar'>
+          <h1 className='heading'>PIZZA! PIZZA!<br />DECATUR</h1>
+          <input
+            type={'search'}
+            id={'search'}
+            placeholder={'Filter Venues'}
+            onChange={this.handleChange}
+          />
+          <VenueList
+            {...this.props}
+              venues={this.handleFilterVenues()}
+              handleListItemClick={this.props.handleListItemClick}
+          />
+        </div>
+      </Menu>
     );
   }
 }

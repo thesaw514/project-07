@@ -1,3 +1,5 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / ListItem.js / 10.21.18
+
 import React, { Component } from 'react';
 
 export default class ListItem extends Component {

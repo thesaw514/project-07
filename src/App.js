@@ -1,11 +1,10 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / App.js / 10.20.18
+
 import React, { Component } from 'react';
 import './App.css';
 import Map from './component/Map';
 import SquareAPI from './API/';
 import SideBar from './component/SideBar';
-
-//react-burger-menu
-import { slide as Menu } from 'react-burger-menu';
 
 class App extends Component {
 
@@ -16,7 +15,7 @@ class App extends Component {
       venues: [],
       markers: [],
       center: [],
-      zoom: 14,
+      zoom: 15,
       updateSuperState: obj => {
         this.setState(obj);
       }
@@ -40,7 +39,6 @@ class App extends Component {
     SquareAPI.getVenueDetails(marker.id).then(res => {
       const newVenue = Object.assign(venue, res.response.venue);
       this.setState({ venues: Object.assign(this.state.venues, newVenue) });
-      console.log(newVenue);
     });
   };
 
@@ -53,8 +51,9 @@ class App extends Component {
   componentDidMount() {
     SquareAPI.search({
       ll: '33.774830,-84.296310',
-      near: 'Atlanta, GA',
-      query: 'Pizza'
+      near: 'Decatur, GA',
+      query: 'pizza',
+      limit: 25
     })
     .then(results => {
       const { venues } = results.response;
@@ -69,23 +68,20 @@ class App extends Component {
         }
       })
       this.setState({ venues, center, markers });
-      console.log(results);
     });
   }
 
   render() {
     return (
       <div className="App">
-        <Menu width={'25vw'}>
           <SideBar
             {...this.state}
               handleListItemClick={this.handleListItemClick}
           />
-        </Menu>
         <Map
           {...this.state}
             handleMarkerClick={this.handleMarkerClick}
-            closeAllMarkers={this.closeAllMarkers} 
+            closeAllMarkers={this.closeAllMarkers}
             onCloseClick={this.closeAllMarkers}
         />
       </div>

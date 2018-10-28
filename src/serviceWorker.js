@@ -1,3 +1,5 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / serviceWorker.js / 10.20.18
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 

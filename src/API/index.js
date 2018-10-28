@@ -1,3 +1,5 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / index.js / 10.20.18
+
 class Helper {
   static baseURL() {
     return 'https://api.foursquare.com/v2';

@@ -1,3 +1,5 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / Map.js / 10.20.18
+
 /* global google */
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
@@ -9,6 +11,15 @@ const MyMapComponent = withScriptjs(
     zoom={props.zoom}
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
     center={props.center}
+    defaultOptions={{
+      streetViewControl: false,
+      scaleControl: false,
+      mapTypeControl: false,
+      panControl: false,
+      zoomControl: true,
+      rotateControl: false,
+      fullscreenControl: false
+    }}
   >
     {props.markers &&
       props.markers.filter(marker => marker.isVisible).map((marker, idx, arr) => {
@@ -26,9 +37,16 @@ const MyMapComponent = withScriptjs(
               venueInfo.bestPhoto && (
                 <InfoWindow onCloseClick={() => props.closeAllMarkers()} >
                   <React.Fragment>
-                    <img src={`${venueInfo.bestPhoto.prefix}200x200${venueInfo.bestPhoto.suffix}`} alt={'Venue Img'}
+                    <img src={`${venueInfo.bestPhoto.prefix}150x150${venueInfo.bestPhoto.suffix}`} alt={'Venue Img'}
                     />
-                  <p>{venueInfo.name}</p>
+                  <h3>{venueInfo.name}</h3>
+                  <p>Rating: {venueInfo.rating}</p>
+                  <p>{venueInfo.location.address}<br />
+                  {venueInfo.location.city}, {venueInfo.location.state}</p>
+                  <p>
+                    <a className='tel' href='tel:'>{venueInfo.contact.formattedPhone}</a>
+                  </p>
+                  <p className='data-fs'>Data: FourSquare API</p>
                   </React.Fragment>
                 </InfoWindow>
               )}

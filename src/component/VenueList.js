@@ -1,3 +1,5 @@
+// Theodore Sawyer, FEND - Project 07: 'Neighborhood Map (React)' / VenueList.js / 10.21.18
+
 import React, { Component } from 'react';
 import ListItem from './ListItem';
 
