@@ -8,11 +8,12 @@ h1.heading {
 }
 
 #search {
-  width: 100%;
+  width: 90%;
   height: 2rem;
   font-size: 1rem;
   text-align: center;
-  color: #ECF0F1;
+  color: #7F8C8D;
+  background: #ECF0F1;
 }
 
 ol.venueList { padding: 1rem; }
@@ -20,14 +21,14 @@ ol.venueList { padding: 1rem; }
 li.listItem {
   list-style: none;
   font-size: 1rem;
-  padding: .5rem;
+  padding: .3rem;
   margin-top: 1rem;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   background: #7F8C8D;
   color: #ECF0F1;
   display: flex;
-  align-items:center;
+  align-items: center;
 }
 
 .bm-item {

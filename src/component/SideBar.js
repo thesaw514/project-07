@@ -48,11 +48,11 @@ export default class SideBar extends Component {
     return (
       <Menu noOverlay>
         <div className='sideBar'>
-          <h1 className='heading'>PIZZA! PIZZA!<br />DECATUR</h1>
+          <h1 className='heading'>PIZZA! PIZZA!<br />DECATUR GA</h1>
           <input
             type={'search'}
             id={'search'}
-            placeholder={'Filter Venues'}
+            placeholder={'Venues Filter'}
             onChange={this.handleChange}
           />
           <VenueList
