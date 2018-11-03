@@ -5,6 +5,11 @@ import './App.css';
 import Map from './component/Map';
 import SquareAPI from './API/';
 import SideBar from './component/SideBar';
+import MapLoadError from './component/MapLoadError';
+
+window.gm_authFailure = () => {
+  alert('Google Maps API (ERROR!)');
+};
 
 class App extends Component {
 
@@ -42,18 +47,22 @@ class App extends Component {
     });
   };
 
-
   handleListItemClick = venue => {
     const marker = this.state.markers.find(marker => marker.id === venue.id);
     this.handleMarkerClick(marker);
   };
 
-  componentDidMount() {
+  handleError = (error) => {
+    this.setState({ error })
+    alert('Foursquare API (ERROR!)');
+  };
+
+  searchVenues = (query, limit) => {
     SquareAPI.search({
       ll: '33.774830,-84.296310',
       near: 'Decatur, GA',
-      query: 'pizza',
-      limit: 25
+      query: query,
+      limit: limit
     })
     .then(results => {
       const { venues } = results.response;
@@ -65,26 +74,35 @@ class App extends Component {
           isOpen: false,
           isVisible: true,
           id: venue.id
-        }
+        };
       })
       this.setState({ venues, center, markers });
-    });
+    })
+    .catch(error => {
+      this.handleError(error)
+    })
+  }
+
+  componentDidMount() {
+    this.searchVenues('Pizza', '15');
   }
 
   render() {
     return (
-      <div className="App">
-          <SideBar
-            {...this.state}
-              handleListItemClick={this.handleListItemClick}
-          />
-        <Map
-          {...this.state}
-            handleMarkerClick={this.handleMarkerClick}
-            closeAllMarkers={this.closeAllMarkers}
-            onCloseClick={this.closeAllMarkers}
-        />
-      </div>
+        <div className="App">
+            <SideBar
+              {...this.state}
+                handleListItemClick={this.handleListItemClick}
+            />
+            <MapLoadError>
+            <Map role='main' aria-label='map'
+              {...this.state}
+                handleMarkerClick={this.handleMarkerClick}
+                closeAllMarkers={this.closeAllMarkers}
+                onCloseClick={this.closeAllMarkers}
+            />
+            </MapLoadError>
+        </div>
     );
   }
 }
